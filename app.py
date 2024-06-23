@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 
 # Load the model
-model = joblib.load('model/laptop_price_model.pkl')
+model = joblib.load('Model/laptop_price_model.pkl')
 
 # Define the Streamlit app
 st.image("lap.png", use_column_width=True)
