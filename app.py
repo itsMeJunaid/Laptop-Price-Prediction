@@ -4,6 +4,7 @@ import joblib
 
 # Load the model
 model = joblib.load('Model/laptop_price_model.pkl')
+df = pd.read_csv('laptop_price.csv', encoding='ISO-8859-1')
 
 # Define the Streamlit app
 st.image("lap.png", use_column_width=True)
@@ -54,6 +55,7 @@ st.write("""
 
 # User inputs
 company = st.selectbox('Company', ['Apple', 'HP', 'Dell', 'Lenovo', 'Asus', 'Acer', 'MSI', 'Microsoft'])
+product = st.selectbox('Product', df['Product'].unique())
 type_name = st.selectbox('Type', ['Ultrabook', 'Notebook', 'Gaming', '2 in 1 Convertible','Latitude'])
 inches = st.number_input('Screen Size (inches)', min_value=10.0, max_value=18.0, value=15.6)
 screen_resolution = st.text_input('Screen Resolution', 'Full HD 1920x1080')
@@ -69,6 +71,7 @@ if st.button('Predict Price'):
     # Create dataframe from inputs
     user_input = {
         'Company': [company],
+        'Product': [product],
         'TypeName': [type_name],
         'Inches': [inches],
         'ScreenResolution': [screen_resolution],
